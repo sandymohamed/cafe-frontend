@@ -1,0 +1,18 @@
+.prod-car{
+    background-color: transparent;
+}
+
+.card-content{
+    color: #524235
+}
+
+.input{
+    width: 5rem;
+    display: inline;
+    margin-left: .2rem;
+}
+.input:focus{
+
+    border: none ;
+    box-shadow: 0 0 0 0.05rem #524235 ;
+}

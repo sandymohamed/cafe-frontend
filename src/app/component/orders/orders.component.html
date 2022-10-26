@@ -1,0 +1,71 @@
+<div class="row row-cols-1 row-cols-md-3 g-4 w-100 m-2">
+  <div class="col w-50" *ngFor="let item of orderList; index as i" [ngClass]="{'bg-danger': item.amount == 0  }"
+    [ngClass]="{'bg-warning':  this.OrderSelct  == item._id }">
+
+    <div class="card mb-3 order-card w-100" style=" border: none">
+
+      <div class="row row-cols-2 g-0 d-flex ">
+
+        <div class="col w-100">
+          <div class="card-body position-relative card-content w-100">
+            <h5 class="card-title">id:{{i+1}}</h5>
+            <h5 class="card-title">date: {{
+                this.pipe.transform( item.date, 'dd/MM/yyyy')
+               }}</h5>
+            <h5 class="card-title"> user: <span class="orange fs-4"> {{item?.user?.username}}</span> </h5>
+            <p class="card-text">status: {{item?.status}}</p>
+            <p class="card-text">room: {{item?.room}}</p>
+            <p class="card-text">amount: {{item?.amount}}</p>
+            <p class="card-text">action: {{item?.action}}</p>
+            <p class="card-text position-absolute bottom-0 end-0 m-1 fs-5 orange fs-4">price: {{item?.ext}} <sup>$</sup>
+            </p>
+
+
+            <button class="btn btn-warning m-1" (click)="ShowProduct(item._id)" (click)="getOrderById(item?._id)">
+              Details
+            </button>
+            <button class="btn btn-danger m-1" (click)="onDelete(item?._id, item)">
+              Delete Order</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<h2 class="text-center text-warning mb-4"> Order Item ID( {{OrderSelct}} ) </h2>
+
+
+<div class="col w-100">
+
+  <div class="card mb-3 order-card w-100" style=" border: none">
+
+    <div class="row row-cols-2 g-0 d-flex ">
+
+      <div class="col">
+        <div class="card-body position-relative card-content ">
+          <h5 class="card-title">id: {{selectedOrder?._id}}</h5>
+          <h5 class="card-title">date: {{selectedOrder?.date}}</h5>
+          <h5 class="card-title"> user: <span class="orange fs-4"> {{selectedOrder?.user?.username}}</span> </h5>
+          <p class="card-text">status: {{selectedOrder?.status}}</p>
+          <p class="card-text">room: {{selectedOrder?.room}}</p>
+          <p class="card-text">amount: {{selectedOrder?.ext}}</p>
+          <p class="card-text">action: {{selectedOrder?.action}}</p>
+          <p class="card-text position-relative bottom-0 end-0  orange fs-4">price: {{selectedOrder?.amount}}
+            <sup>$</sup>
+          </p>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

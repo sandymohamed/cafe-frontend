@@ -1,0 +1,14 @@
+.input{
+    width: 5rem;
+    display: inline;
+    color: #524235;
+    margin-left: .2rem;
+}
+.input:focus{
+    border: none ;
+    box-shadow: 0 0 0 0.05rem #524235 ;
+}
+
+.orange{
+    color:#FD7D00 
+  }

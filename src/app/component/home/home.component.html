@@ -1,0 +1,83 @@
+<h1 class="orange m-3 text-center">Slecet Orders Date: </h1>
+
+<form class="form mb-5">
+  <div>
+    <label for="start-date">Start Date: </label><br>
+
+    <input class="input w-50 m-2" type="date" id="start-date" [(ngModel)]="startDate" name="startdate">
+
+  </div>
+  <div>
+    <label for="end-date">End Date: </label><br>
+
+    <input class="input w-50 m-2" type="date" id="end-date" [(ngModel)]="endDate" name="enddate">
+  </div>
+  <button class="btn btn-warning w-50 ms-2" (click)="handleSelect()"> submit</button>
+
+
+</form>
+<hr>
+
+
+
+<div class="container">
+  <header class="jumbotron">
+    <p>{{ content }}</p>
+  </header>
+
+
+
+  <div>
+
+    <div class="container">
+      <header class="jumbotron">
+        <!-- <p>{{ content }}</p> -->
+
+
+        <h2 class="text-center orange"> Orders: </h2>
+
+        <a class="btn btn-warning" [routerLink]="['/order/add']">
+          Go To Create Order
+        </a>
+
+
+        <div>
+
+        </div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>user Name</td>
+              <td>date</td>
+              <td>status</td>
+              <td>amount</td>
+              <td>action</td>
+              <td>room</td>
+              <td> ext </td>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let ord of orderDate" [ngClass]="{'bg-danger': ord.amount == 0  }"
+              [ngClass]="{'bg-warning':  this.OrderSelct  == ord._id }">
+              <td> {{ord._id}} </td>
+              <td> {{ord.user.username}} </td>
+              <td> {{
+                      this.pipe.transform( ord.date, 'dd/MM/yyyy')
+                     }} </td>
+              <td> {{ord.status}} </td>
+              <td> {{ord.amount}} </td>
+              <td> {{ord.action}} </td>
+              <td> {{ord.room}} </td>
+              <td> {{ord.ext}} </td>
+
+
+              <!-- <td> <button class="btn btn-warning" (click)="ShowProduct(ord._id)">
+                  Details
+                </button> </td> -->
+              <a class="btn btn-warning" [routerLink]="['/orders']"> Details </a>
+            </tr>
+          </tbody>
+        </table>

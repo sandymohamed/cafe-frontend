@@ -1,0 +1,119 @@
+<div class=" row p-2">
+  <h1 class="orange m-3 text-center">Add New Order: </h1>
+  <div class="col receipt flex-column ">
+    <div class="card ">
+      <div class="card-body ">
+        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+          <div class="mb-3">
+            <label for="prdName" class="form-label"> product </label>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+
+                  <td>product</td>
+                  <td>price</td>
+                  <td>img</td>
+                  <td>products count</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let prod of MyOrder.Prodeuct">
+
+                  <td> {{prod.name}} </td>
+                  <td> {{prod.price}} </td>
+
+                  <td><img src="../../../assets/coffee-icon-coffee-cup-flat-icon.png" width="96" height="96">
+                  </td>
+                  <td> {{prod.size }} </td>
+
+
+                  <td> <button class="btn btn-danger mt-5" (click)="FunRemove(prod._id, prod.price)">
+                      Delete
+                    </button> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mb-3">
+            <label for="note" class="form-label">status : </label>
+            <input type="text" class="form-control" [(ngModel)]="MyOrder.status" #inpStauts="ngModel" name="status"
+              required minlength="3" maxlength="20" value="done" [ngClass]="{ 'is-invalid':  inpStauts.errors }">
+          </div>
+
+          <div class="mb-3">
+            <label for="room" class="form-label">Room: </label>
+            <input type="number" class="form-control" [(ngModel)]="MyOrder.room" #inproom="ngModel" name="room"
+              value="1" [ngClass]="{ 'is-invalid':  inproom.errors }" />
+          </div>
+
+          <div class="mb-3">
+            <label for="action" class="form-label">Action: </label>
+            <input type="text" class="form-control" [(ngModel)]="MyOrder.action" #inpaction="ngModel" name="action"
+              value="done" [ngClass]="{ 'is-invalid':  inpaction.errors }" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Total Price: </label>
+            <label> {{total}}</label>
+                      
+          </div>
+          <button type="submit" class="btn btn-warning w-100 text-white fs-4">Submit</button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col products-order  ">
+
+    <div class="products">
+
+      <h4 class="orange m-4">choose products:</h4>
+      <div *ngFor="let prodAl of products" class="my-3">
+        <div class="chip product-chip">
+          <img src="../../../assets/coffee-icon-coffee-cup-flat-icon.png" style="height: 100%; width: 30%;"
+            (click)="addProdcut(prodAl)">
+          <!-- {{prodAl.name }} | Price : {{prodAl.price}} -->
+          <h5 class="card-title brown mb-1">name: {{prodAl.name}}</h5>
+          <h5 class="card-title brown">price: {{prodAl.price}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <hr>
+
+  <div class="row row-cols-1 row-cols-md-3 g-2  m-1">
+    <div class="latest-order" *ngFor="let item of orderDate; index as i">
+      <div class="card mb-3 prod-car" style="max-width: 20rem; border: none">
+        <div class="row row-cols-2 g-0 d-flex ">
+
+          <div class="col-8">
+            <div class="card-body position-relative card-content">
+              <h5 class="card-title">id: {{i+1}}</h5>
+              <h5 class="card-title">date: {{
+                                this.pipe.transform( item.date, 'dd/MM/yyyy')
+                               }}</h5>
+              <p class="card-text">user: <small>{{item.user.username}}</small></p>
+              <p class="card-text">room: <small>{{item.room}}</small></p>
+              <p class="card-text">ext: <small>{{item.ext}}</small></p>
+              <p class="card-text">action: <small>{{item.action}}</small></p>
+              <p class="card-text">price: <small>{{item.amount}}
+                  <sup>$</sup></small></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
